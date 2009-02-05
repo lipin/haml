@@ -63,19 +63,19 @@ SASS
   def test_warning_reporting
     assert_warning(<<WARN) {eval("foo")}
 DEPRECATION WARNING:
-On line 1, character 1 of 'test_warning_reporting_inline.sass'
+On line 1, character 1 of '#{('block in ' if Haml::Util.ruby1_9_1?)}test_warning_reporting_inline.sass'
 Implicit strings have been deprecated and will be removed in version 2.4.
 'foo' was not quoted. Please add double quotes (e.g. "foo").
 WARN
     assert_warning(<<WARN) {eval("1 + foo")}
 DEPRECATION WARNING:
-On line 1, character 5 of 'test_warning_reporting_inline.sass'
+On line 1, character 5 of '#{('block in ' if Haml::Util.ruby1_9_1?)}test_warning_reporting_inline.sass'
 Implicit strings have been deprecated and will be removed in version 2.4.
 'foo' was not quoted. Please add double quotes (e.g. "foo").
 WARN
     assert_warning(<<WARN) {render("@if 1 + foo")}
 DEPRECATION WARNING:
-On line 1, character 9 of 'test_warning_reporting_inline.sass'
+On line 1, character 9 of '#{('block in ' if Haml::Util.ruby1_9_1?)}test_warning_reporting_inline.sass'
 Implicit strings have been deprecated and will be removed in version 2.4.
 'foo' was not quoted. Please add double quotes (e.g. "foo").
 WARN
@@ -83,7 +83,7 @@ WARN
     # Regression
     assert_warning(<<WARN) {render("@if if")}
 DEPRECATION WARNING:
-On line 1, character 5 of 'test_warning_reporting_inline.sass'
+On line 1, character 5 of '#{('block in ' if Haml::Util.ruby1_9_1?)}test_warning_reporting_inline.sass'
 Implicit strings have been deprecated and will be removed in version 2.4.
 'if' was not quoted. Please add double quotes (e.g. "if").
 WARN
@@ -92,7 +92,7 @@ WARN
   def test_inaccessible_functions
     assert_warning <<WARN do
 DEPRECATION WARNING:
-On line 2, character 6 of 'test_inaccessible_functions_inline.sass'
+On line 2, character 6 of '#{('block in ' if Haml::Util.ruby1_9_1?)}test_inaccessible_functions_inline.sass'
 Implicit strings have been deprecated and will be removed in version 2.4.
 'to_s' was not quoted. Please add double quotes (e.g. "to_s").
 WARN

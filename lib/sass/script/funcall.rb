@@ -17,10 +17,9 @@ module Sass
         unless Haml::Util.has?(:public_instance_method, Functions, name) && name !~ /^__/
           return Script::String.new("#{name}(#{args.map {|a| a.perform(environment)}.join(', ')})")
         end
-
+        
         return Functions.send(name, *args)
       rescue ArgumentError => e
-        raise e unless e.backtrace.first =~ /:in `#{name}'$/
         raise Sass::SyntaxError.new("#{e.message} for `#{name}'")
       end
     end
