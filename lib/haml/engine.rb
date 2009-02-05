@@ -158,7 +158,7 @@ END
         extend Haml::Helpers
         @haml_buffer = buffer
       end
-
+      
       eval(@precompiled, scope, @options[:filename], @options[:line])
 
       # Get rid of the current buffer

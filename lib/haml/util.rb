@@ -39,6 +39,19 @@ module Haml
       Haml::Util::RUBY_VERSION[0] == 1 && Haml::Util::RUBY_VERSION[1] < 9
     end
 
+    def ruby1_9_1?
+      Haml::Util::RUBY_VERSION[0] == 1 && Haml::Util::RUBY_VERSION[1] == 9 && Haml::Util::RUBY_VERSION[2] >= 1
+    end
+    
+    def stringify(object)
+      return object.to_s unless ruby1_9_1?
+      if object.is_a?(Array)
+        s=''; object.each {|e| s << e.to_s }; s
+      else
+        object.to_s
+      end
+    end
+
     def has?(attr, klass, method)
       klass.send("#{attr}s").include?(ruby1_8? ? method.to_s : method.to_sym)
     end
