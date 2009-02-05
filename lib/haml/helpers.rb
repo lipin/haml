@@ -272,7 +272,12 @@ module Haml
         result = captured.map do |line|
           line[min_tabs..-1]
         end
-        result.to_s
+
+        if (RUBY_VERSION=="1.9.1" && result.is_a?(Array))
+          s=''; result.each {|e| s << e.to_s }; s
+        else
+          result.to_s
+        end
       end
     end
 
