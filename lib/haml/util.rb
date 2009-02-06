@@ -46,7 +46,7 @@ module Haml
     def stringify(object)
       return object.to_s unless ruby1_9_1?
       if object.is_a?(Array)
-        s=''; object.each {|e| s << e.to_s }; s
+        object.join('')
       else
         object.to_s
       end
